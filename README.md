@@ -26,4 +26,5 @@ PT4 = xlsread(filename, "Líneas", "F343:F440");
 PT_nodes = unique([PT1;PT2;PT3;PT4]);
 
 
-all_nodes = setdiff(ESP_nodes, setdiff [ESP_nodes PT_nodes];
+
+total_nodes = unique(ESP_nodes, PT_nodes)
