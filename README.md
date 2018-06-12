@@ -47,8 +47,8 @@ location_to = node_location(node_to,:);
 
 %create adjacency matrix for node connections
 adjacency_matrix_nodes = zeros(length(node_from));
-for i = 1:length(node_from))
-        adjacency_matrix(node_from(i),node_to(i)) = 1;
+for i = 1:length(node_from)
+        adjacency_matrix_nodes(node_from(i),node_to(i)) = 1;
 end
 
 %plot graph of nodes
