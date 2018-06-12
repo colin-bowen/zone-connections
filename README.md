@@ -54,3 +54,19 @@ end
 %plot graph of nodes
 figure
 gplot(adjacency_matrix_nodes, node_location, '-.r');
+
+
+%plots of nodes by zone, first call zone matrix
+CleaningZoneData
+%zone 1
+for i = 1:length(node_pairing)
+    if node_pairing(i,2) == 1
+        zone_1_nodes(i) = node_pairing(i,1);
+    end
+end
+
+zone_1_node_location = node_location(zone_1_nodes);
+adjacency_matrix_zone_1 = ones(length(zone_1_nodes));
+figure
+gplot(adjacency_matrix_zone_1, zone_1_node_location, '.r')
+
