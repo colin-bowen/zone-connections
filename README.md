@@ -2,9 +2,9 @@
 
 filename = "SpanishPortuguese_400kV_Location_PowerGrid1";
 sheetnodos = "Nodos-Localizacion";
-node_name = xlsread(filename,sheetnodos,"A1:A304");
-node_id = xlsread(filename, sheetnodos, "B1:B304");
-node_location = xlsread(filename, sheetnodos, "C1:D304");
+node_name = xlsread(filename,sheetnodos,"A2:A305");
+node_id = xlsread(filename, sheetnodos, "B2:B305");
+node_location = xlsread(filename, sheetnodos, "C2:D305");
 
 %columns of from and to connections
 node_from = xlsread(filename, "Líneas", "B2:B440");
@@ -26,5 +26,21 @@ PT4 = xlsread(filename, "Líneas", "F343:F440");
 PT_nodes = unique([PT1;PT2;PT3;PT4]);
 
 
+all_nodes = unique([ESP_nodes; PT_nodes]);
 
-total_nodes = unique(ESP_nodes, PT_nodes)
+spain_center = [sum(node_location(1:235,1))/235,sum(node_location(1:235,2))/235];
+port_center = [sum(node_location(236:end,1))/69,sum(node_location(236:end,2))/69];
+
+%overall connections convert to string to make easier input into excel
+connection_from = "hello";
+connection_to = "hello";
+for i=1:length(node_from)
+    connection_from(i) = "Node_" + num2str(node_from(i));
+    connection_to(i) = "Node_" + num2str(node_to(i));
+end
+connection_from = connection_from';
+connection_to = connection_to';
+
+%overall connections latitude and longitude
+location_from = node_location(node_from,:);
+location_to = node_location(node_to,:);
