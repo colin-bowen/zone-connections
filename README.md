@@ -44,3 +44,29 @@ connection_to = connection_to';
 %overall connections latitude and longitude
 location_from = node_location(node_from,:);
 location_to = node_location(node_to,:);
+
+%create adjacency matrix for node connections
+adjacency_matrix_nodes = zeros(length(node_from));
+for i = 1:length(node_from)
+        adjacency_matrix_nodes(node_from(i),node_to(i)) = 1;
+end
+
+%plot graph of nodes
+figure
+gplot(adjacency_matrix_nodes, node_location, '-.r');
+
+
+%plots of nodes by zone, first call zone matrix
+CleaningZoneData
+%zone 1
+for i = 1:length(node_pairing)
+    if node_pairing(i,2) == 1
+        zone_1_nodes(i) = node_pairing(i,1);
+    end
+end
+
+zone_1_node_location = node_location(zone_1_nodes);
+adjacency_matrix_zone_1 = ones(length(zone_1_nodes));
+figure
+gplot(adjacency_matrix_zone_1, zone_1_node_location, '.r')
+
