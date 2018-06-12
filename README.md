@@ -44,3 +44,13 @@ connection_to = connection_to';
 %overall connections latitude and longitude
 location_from = node_location(node_from,:);
 location_to = node_location(node_to,:);
+
+%create adjacency matrix for node connections
+adjacency_matrix_nodes = zeros(length(node_from));
+for i = 1:length(node_from))
+        adjacency_matrix(node_from(i),node_to(i)) = 1;
+end
+
+%plot graph of nodes
+figure
+gplot(adjacency_matrix_nodes, node_location, '-.r');
